@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="bilder\bilder.cs" />
+    <Compile Include="bilder\bollen.cs" />
     <Compile Include="bilder\Spelare.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="poäng.cs" />
