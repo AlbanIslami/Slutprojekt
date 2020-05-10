@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -10,26 +11,27 @@ using System.Threading.Tasks;
 
 namespace Template.bilder
 {
-    class Bollen
+    public class Ball : Bilder
     {
         private float tid = 0f;
-        private Vector2 positionen = null;
+        private Vector2? startpositionen = null;
         public float? speed;
         public bool spelande;
 
         public poäng poäng;
         public int SpeedIncrementSpan = 10;
 
-        public Bollen(Texture2D texture)
+        public Ball(Texture2D texture)
+            : base(texture)
         {
             speed = 3f;
         }
 
-        public override void Update(List<Bilder> sprites, GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Bilder> sprites)
         {
-            if (positionen == null)
+            if (startpositionen == null)
             {
-                positionen = Position;
+                startpositionen = Position;
                 speed = hastighet;
 
                 Restart();
@@ -37,12 +39,11 @@ namespace Template.bilder
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 spelande = true;
-            return;
 
             if (!spelande)
+
                 return;
-
-
+            
 
             tid += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -51,22 +52,37 @@ namespace Template.bilder
                 speed++;
                 tid = 0;
             }
-            foreach(var sprite in Bilder)
+            foreach (var bilder in sprites)
             {
-                if (sprite == this)
+                if (bilder == this)
                     continue;
 
-                if (this.Velocity.X > 0 && this.rörvänster(sprite))
-                    this.Velocity.X = -this.Velocity.X;
-                if (this.Velocity.X < 0 && this.rörhöger(sprite))
-                    this.Velocity.X = -this.Velocity.X;
-                if (this.Velocity.Y < 0 && this.rörtoppen(sprite))
-                    this.Velocity.Y = -this.Velocity.Y;
-                if (this.Velocity.Y < 0 && this.rörbotten(sprite))
-                    this.Velocity.Y = -this.Velocity.Y;
+                if (this.röra.X > 0 && this.rörvänster(bilder))
+                    this.röra.X = -this.röra.X;
+                if (this.röra.X < 0 && this.rörhöger(bilder))
+                    this.röra.X = -this.röra.X;
+                if (this.röra.Y < 0 && this.rörtoppen(bilder))
+                    this.röra.Y = -this.röra.Y;
+                if (this.röra.Y < 0 && this.rörbotten(bilder))
+                    this.röra.Y = -this.röra.Y;
             }
 
-            if(positionen.Y <= 0)
+            if (Position.Y <= 0 || Position.Y + bild.Height >= Game1.ScreenHeight)
+                röra.Y = -röra.Y;
+
+            if (Position.X <= 0)
+            {
+                poäng.Poäng2++;
+                Restart();
+            }
+
+            if (Position.X + bild.Width >= Game1.ScreenWidth)
+            {
+                poäng.Poäng1++;
+                Restart();
+            }
+
+            Position += röra * hastighet;
         }
 
 
@@ -77,28 +93,27 @@ namespace Template.bilder
 
             switch (direction)
             {
-                case 0;
-                    Velocity = new Vector2(1, 1);
+                case 0:
+                    röra = new Vector2(1, 1);
                     break;
-                case 1;
-                    Velocity = new Vector2(1, 1);
+                case 1:
+                    röra = new Vector2(1, -1);
                     break;
-                case 2;
-                    Velocity = new Vector2(1, 1);
+                case 2:
+                    röra = new Vector2(-1, -1);
                     break;
-                case 3;
-                    Velocity = new Vector2(1, 1);
+                case 3:
+                    röra = new Vector2(-1, 1);
                     break;
             }
 
-            Position = (Vector2)positionen;
-            speed = (float)Positionen;
+            Position = (Vector2)Position;
+            hastighet = (float)speed;
             tid = 0;
             spelande = false;
         }
-
-            }
-        }
-
     }
+ }
+
+    
 

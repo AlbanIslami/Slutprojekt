@@ -41,9 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bilder\bilder.cs" />
-    <Compile Include="bilder\bollen.cs" />
-    <Compile Include="bilder\Spelare.cs" />
+    <Compile Include="Bilder\bilder.cs" />
+    <Compile Include="Bilder\bollen.cs" />
+    <Compile Include="Bilder\Spelare.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="poäng.cs" />
     <Compile Include="Program.cs" />

@@ -47,6 +47,11 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            var bollenTexture = Content.Load<Texture2D>("gdgd");
+            var SpelareTexture = Content.Load<Texture2D>("hand");
+
+            poäng = new poäng 
+
             // TODO: use this.Content to load your game content here 
         }
 

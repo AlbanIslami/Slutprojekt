@@ -9,7 +9,7 @@ using Template.rörelse;
 
 namespace Template.bilder
 {
-    class Bilder
+   public class Bilder
     {
         protected Texture2D bild;
 

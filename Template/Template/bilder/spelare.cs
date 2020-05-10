@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -11,7 +12,7 @@ namespace Template.bilder
 {
     public class spelare : Bilder
     {
-        public Spelare(Texture2D texture)
+        public spelare(Texture2D texture)
             : base(texture)
         {
             hastighet = 5f;
