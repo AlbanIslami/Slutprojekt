@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using Template.bilder;
 using Template.rörelse;
+using Template.Sprites;
 
 namespace Template
 {
@@ -20,10 +20,8 @@ namespace Template
         public static int ScreenHeight;
         public static Random Random;
 
-        private poäng _poäng;
-        private List<Bilder> bilders;
-
-
+        private poäng poäng;
+        private List<Sprite> sprites;
 
         public Game1()
         {
@@ -42,6 +40,7 @@ namespace Template
             ScreenWidth = graphics.PreferredBackBufferWidth;
             ScreenHeight = graphics.PreferredBackBufferHeight;
             Random = new Random();
+
             base.Initialize();
         }
 
@@ -54,40 +53,38 @@ namespace Template
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var bollenTexture = Content.Load<Texture2D>("gdgd.png");
-            var SpelareTexture = Content.Load<Texture2D>("hand.jpg");
+            var spelarTexture = Content.Load<Texture2D>("btt");
+            var bollenTexture = Content.Load<Texture2D>("lul");
 
-            _poäng = new poäng(Content.Load<SpriteFont>("Fontet"));
+            poäng = new poäng(Content.Load<SpriteFont>("Fontet"));
 
-            bilders = new List<Bilder>();
-            {
-                new Bilder(Content.Load<Texture2D>("bakgrund.png"));
-                new spelare(SpelareTexture)
-                {
-                    Position = new Vector2(20, (ScreenHeight / 2) - (SpelareTexture.Height / 2)),
-                    input = new input()
-                    {
-                        Upp = Keys.W,
-                        ned = Keys.S,
-                    }
-                };
-                new spelare(SpelareTexture)
-                {
-                    Position = new Vector2(ScreenWidth - 20 - SpelareTexture.Width, (ScreenHeight / 2) - (SpelareTexture.Height / 2)),
-                    input = new input()
-                    {
-                        Upp = Keys.Up,
-                        ned = Keys.Down,
-                    }
-                };
-                new Ball(bollenTexture)
-                {
-                    Position = new Vector2((ScreenWidth / 2) - (bollenTexture.Width / 2), (ScreenHeight / 2) - (bollenTexture.Height / 2)),
-                    poäng = _poäng,
-                };
-                {
-                };
-            }
+            sprites = new List<Sprite>()
+      {
+        new Sprite(Content.Load<Texture2D>("bk")),
+        new Spelare(spelarTexture)
+        {
+          Position = new Vector2(20, (ScreenHeight / 2) - (spelarTexture.Height / 2)),
+          input = new input()
+          {
+            Upp = Keys.W,
+            ned = Keys.S,
+          }
+        },
+        new Spelare(spelarTexture)
+        {
+          Position = new Vector2(ScreenWidth - 20 - spelarTexture.Width, (ScreenHeight / 2) - (spelarTexture.Height / 2)),
+          input = new input()
+          {
+            Upp = Keys.Up,
+            ned = Keys.Down,
+          }
+        },
+        new Ball(bollenTexture)
+        {
+          Position = new Vector2((ScreenWidth / 2) - (bollenTexture.Width / 2), (ScreenHeight / 2) - (bollenTexture.Height / 2)),
+          poäng = poäng,
+        }
+      };
         }
 
         /// <summary>
@@ -99,9 +96,6 @@ namespace Template
             // TODO: Unload any non ContentManager content here
         }
 
-
-
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -109,9 +103,9 @@ namespace Template
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            foreach (var sprite in bilders)
+            foreach (var sprite in sprites)
             {
-                sprite.Update(gameTime, bilders);
+                sprite.Update(gameTime, sprites);
             }
 
             base.Update(gameTime);
@@ -127,10 +121,10 @@ namespace Template
 
             spriteBatch.Begin();
 
-            foreach (var sprite in bilders)
+            foreach (var sprite in sprites)
                 sprite.Draw(spriteBatch);
 
-            _poäng.Draw(spriteBatch);
+            poäng.Draw(spriteBatch);
 
             spriteBatch.End();
 

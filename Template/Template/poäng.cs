@@ -13,15 +13,15 @@ namespace Template
         public int Poäng1;
         public int Poäng2;
 
-        private SpriteFont fontet;
+        private SpriteFont font1;
         public poäng(SpriteFont font)
         {
-            fontet = font;
+            font1 = font;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(fontet, Poäng1.ToString(), new Vector2(320, 70), Color.Black);
-            spriteBatch.DrawString(fontet, Poäng2.ToString(), new Vector2(430, 70), Color.Black);
+            spriteBatch.DrawString(font1, Poäng1.ToString(), new Vector2(320, 70), Color.Black);
+            spriteBatch.DrawString(font1, Poäng2.ToString(), new Vector2(430, 70), Color.Black);
         }
         
     }
