@@ -13,7 +13,7 @@ namespace Template.Sprites
     {
         protected Texture2D bilder;
 
-        public Vector2 Position;
+        public Vector2 Position; 
         public Vector2 Röra;
         public float Hastighet;
         public input input;
@@ -40,8 +40,8 @@ namespace Template.Sprites
         {
             spriteBatch.Draw(bilder, Position, Color.White);
         }
-
-        #region Kollision
+        // hur spelaren kommer kollidera
+        #region Kollision  
         protected bool IsTouchingLeft(Sprite sprite)
         {
             return this.Rectangle.Right + this.Röra.X > sprite.Rectangle.Left &&
@@ -73,6 +73,6 @@ namespace Template.Sprites
               this.Rectangle.Right > sprite.Rectangle.Left &&
               this.Rectangle.Left < sprite.Rectangle.Right;
         }
-        #endregion
+        #endregion // 
     }
 }

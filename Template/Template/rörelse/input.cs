@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Template.rörelse
 {
-    public class input
+    public class input //vilka knappar för att röra sig.
     {
         public Keys Upp;
         public Keys ned;
+        public Keys Escape;
     }
 }

@@ -17,7 +17,7 @@ namespace Template.Sprites
         private bool spelar;
 
         public poäng poäng;
-        public int SpeedIncrementSpan = 10; // How often the speed will increment
+        public int SpeedIncrementSpan = 10; //Hur ofta farten ska öka
 
         public Ball(Texture2D texture)
           : base(texture)
@@ -49,6 +49,7 @@ namespace Template.Sprites
                 tid = 0;
             }
 
+            //när spelet ska restartas
             foreach (var sprite in sprites)
             {
                 if (sprite == this)
@@ -82,7 +83,7 @@ namespace Template.Sprites
             Position += Röra * Hastighet;
         }
 
-        public void Restart()
+        public void Restart() //när spelet ska restartas
         {
             var direction = Game1.Random.Next(0, 4);
 
