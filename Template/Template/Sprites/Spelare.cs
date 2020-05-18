@@ -10,7 +10,7 @@ namespace Template.Sprites
 {
     public class Spelare : Sprite
     {
-        private enum pausad
+        private enum pausad //pausa spelarna.
         {
             spela,
             pausa
@@ -24,12 +24,12 @@ namespace Template.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if (Keyboard.GetState().IsKeyDown(input.Escape)&& terminator == pausad.spela)
+            if (Keyboard.GetState().IsKeyDown(input.Escape)&& terminator == pausad.spela) //spelet pausas genom att trycka escape
             {
                 terminator = pausad.pausa;
                 Debug.WriteLine("pausad");
             }
-            else if (Keyboard.GetState().IsKeyDown(input.Escape) && terminator == pausad.pausa)
+            else if (Keyboard.GetState().IsKeyDown(input.Escape) && terminator == pausad.pausa) //spelet unpausar genom att trycka escape
             {
                 terminator = pausad.spela;
                 Debug.WriteLine("spelar");
@@ -38,7 +38,7 @@ namespace Template.Sprites
                 throw new Exception("ge ett värde till input");
             if (terminator == pausad.spela)
             {
-                if (Keyboard.GetState().IsKeyDown(input.Upp))  //hur spelaren rör sig
+                if (Keyboard.GetState().IsKeyDown(input.Upp))  //spelarnas rörelse. 
                     Röra.Y = -Hastighet;
                 else if (Keyboard.GetState().IsKeyDown(input.ned))
                     Röra.Y = Hastighet;

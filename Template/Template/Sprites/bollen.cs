@@ -43,13 +43,13 @@ namespace Template.Sprites
 
             tid += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (tid > SpeedIncrementSpan)
+            if (tid > SpeedIncrementSpan) //om hastigheten på bollen ska öka och timern restartas.
             {
                 Hastighet++;
                 tid = 0;
             }
 
-            //när spelet ska restartas
+            //när bollen rör någon av spelarna.
             foreach (var sprite in sprites)
             {
                 if (sprite == this)
@@ -65,16 +65,16 @@ namespace Template.Sprites
                     this.Röra.Y = -this.Röra.Y;
             }
 
-            if (Position.Y <= 0 || Position.Y + bilder.Height >= Game1.ScreenHeight)
+            if (Position.Y <= 0 || Position.Y + bilder.Height >= Game1.ScreenHeight) //bollen kommer 'studsa'
                 Röra.Y = -Röra.Y;
 
-            if (Position.X <= 0)
+            if (Position.X <= 0) //spelare 2 får poäng och spelet börjar om
             {
                 poäng.Poäng2++;
                 Restart();
             }
 
-            if (Position.X + bilder.Width >= Game1.ScreenWidth)
+            if (Position.X + bilder.Width >= Game1.ScreenWidth) //spelare 1 får poäng och spelet börjar om
             {
                 poäng.Poäng1++;
                 Restart();
@@ -85,7 +85,7 @@ namespace Template.Sprites
 
         public void Restart() //när spelet ska restartas
         {
-            var direction = Game1.Random.Next(0, 4);
+            var direction = Game1.Random.Next(0, 4); //random riktning bollen åker när spelet börjar.
 
             switch (direction)
             {
@@ -103,7 +103,7 @@ namespace Template.Sprites
                     break;
             }
 
-            Position = (Vector2)startpositionen;
+            Position = (Vector2)startpositionen; //när spelet är 'pausat'
             Hastighet = (float)Starten;
             tid = 0;
             spelar = false;

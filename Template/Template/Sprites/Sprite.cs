@@ -40,7 +40,7 @@ namespace Template.Sprites
         {
             spriteBatch.Draw(bilder, Position, Color.White);
         }
-        // hur spelaren kommer kollidera
+        // Kollision
         #region Kollision  
         protected bool IsTouchingLeft(Sprite sprite)
         {

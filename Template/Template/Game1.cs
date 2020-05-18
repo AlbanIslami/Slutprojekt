@@ -46,14 +46,14 @@ namespace Template
             var spelarTexture = Content.Load<Texture2D>("btt");
             var bollenTexture = Content.Load<Texture2D>("lul");
 
-            poäng = new poäng(Content.Load<SpriteFont>("Fontet"));
+            poäng = new poäng(Content.Load<SpriteFont>("Fontet")); // ladda in fonten
 
             sprites = new List<Sprite>()
       {
         new Sprite(Content.Load<Texture2D>("bk")),
-        new Spelare(spelarTexture)
+        new Spelare(spelarTexture) 
         {
-          Position = new Vector2(20, (ScreenHeight / 2) - (spelarTexture.Height / 2)),
+          Position = new Vector2(20, (ScreenHeight / 2) - (spelarTexture.Height / 2)), //laddar in spelaren 
           input = new input()
           {
             Upp = Keys.W,
@@ -63,7 +63,7 @@ namespace Template
         },
                 new Spelare(spelarTexture)
                 {
-                    Position = new Vector2(ScreenWidth - 20 - spelarTexture.Width, (ScreenHeight / 2) - (spelarTexture.Height / 2)),
+                    Position = new Vector2(ScreenWidth - 20 - spelarTexture.Width, (ScreenHeight / 2) - (spelarTexture.Height / 2)), //laddar in den andra spelaren
                     input = new input()
                     {
                         Upp = Keys.Up,
@@ -73,20 +73,20 @@ namespace Template
                 },
         new Ball(bollenTexture)
         {
-            Position = new Vector2((ScreenWidth / 2) - (bollenTexture.Width / 2), (ScreenHeight / 2) - (bollenTexture.Height / 2)),
+            Position = new Vector2((ScreenWidth / 2) - (bollenTexture.Width / 2), (ScreenHeight / 2) - (bollenTexture.Height / 2)), //laddar in bollen i mitten av skärmen
             poäng = poäng,
         }
       };
-    }
-    
-
-     
-        protected override void UnloadContent()
-        {
-           
         }
 
-     
+
+
+        protected override void UnloadContent()
+        {
+
+        }
+
+
         protected override void Update(GameTime gameTime)
         {
             foreach (var sprite in sprites)

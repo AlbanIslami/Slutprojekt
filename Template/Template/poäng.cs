@@ -27,7 +27,7 @@ namespace Template
             
         }
 
-        private void spara(int Poäng1, int Poäng2)
+        private void spara(int Poäng1, int Poäng2) //skriver poängen i en textfil.
         {
             StreamWriter sw = new StreamWriter("Textfil.txt");
             sw.WriteLine(Poäng1);
